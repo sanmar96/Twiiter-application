@@ -29,7 +29,8 @@ public class Tweet {
     }
     
     public void addComment(Comment t){
-    commentThread.add(t);
+       commentThread ct = new CommentThread();
+       ct.addComment(t);
     }
     
 }
