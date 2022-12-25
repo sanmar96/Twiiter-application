@@ -9,7 +9,7 @@ public class Tweet {
     int tweetId;
     static int incrementor=0;
     List<Like> likes;
-    CommentThread commentThread;
+    Map<String,CommentThread> commentThread;
 
 
     Tweet(RegisterdUser ra,String content,List<String> hashTags,List<String>taggedUsers){
