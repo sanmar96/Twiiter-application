@@ -1,4 +1,7 @@
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Tweet {
 
@@ -9,7 +12,8 @@ public class Tweet {
     int tweetId;
     static int incrementor=0;
     List<Like> likes;
-    Map<String,CommentThread> commentThread;
+    Map<Integer,CommentThread> commentThread;
+    LocalDateTime dateTime;
 
 
     Tweet(RegisterdUser ra,String content,List<String> hashTags,List<String>taggedUsers){
@@ -25,12 +29,22 @@ public class Tweet {
     }
 
     public void dislikeaTweet(){
-        // iterate the likes list and remove the user who lie the tweet
+        // iterate the likes list and remove the user who liked the tweet
+        for(Like h:likes){
+         RegisterdUser ra = h.getUser();
+         if(this.equals(ra)){
+          likes.remove(h);
+         }
+        }
+
     }
     
     public void addComment(Comment t){
-       commentThread ct = new CommentThread();
+       CommentThread ct = new CommentThread();
        ct.addComment(t);
+       int Id = ct.getThreadId();
+       Map<Integer,CommentThread> ctMap  = new HashMap<>();
+       ctMap.put(Id,ct);
     }
     
 }
